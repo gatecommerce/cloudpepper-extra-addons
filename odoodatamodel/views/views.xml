@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+
+<!--        <template id="dataass" name="dataassets">-->
+<!--            <link href="odoodatamodel/views/backend/css/main.7e2598ce.css" rel="stylesheet"/>-->
+<!--            <script type="text/javascript" src="/odoodatamodel/views/backend/js/main.7f8bd7a6.js"/>-->
+<!--        </template>-->
+<!--        -->
+        <template id="er_template" name="Data Model">
+            <t>
+
+                <link rel="icon" href="/web/image/res.company/1/favicon"/>
+                <div id="root">
+                </div>
+                <t t-call-assets="odoodatamodel.erassets"/>
+
+            </t>
+        </template>
+    </data>
+</odoo>

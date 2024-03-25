@@ -1,0 +1,162 @@
+<odoo>
+    <template id="dashboard_template" name="Query Editor Dashboard">
+        <link rel="icon" href="/web/image/res.company/1/favicon"/>
+        <t t-call-assets="web.assets_common"/>
+        <t t-call-assets="web.assets_frontend"/>
+        <t t-call-assets="odoodatamodel.mtass"/>
+
+        <div class="loderScreen hideScreen">
+            <div class="spinner-border text-primary" id="spinner" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+
+        <div class="dashboard">
+            <div class="dashboard-sidebar">
+                <div class="report-container">
+                    <div class="table-label-container">
+                        <h5 class="mt-0">Saved SQL Queries</h5>
+                    </div>
+                    <ul id="report-names" class="scrollsettings">
+
+                        <t t-set="queries" t-value="request.env['mini.tableau.query'].sudo().search([])"/>
+                        <t t-foreach="queries" t-as="query">
+
+                            <li class="d-flex" t-att-id="query.id" data-toggle="tooltip" data-placement="right"
+                                t-att-title="query.query_name">
+                                <span onclick="playQuery();" class="li-item li-report-item reportLink" id="reportLink"
+                                      t-att-title="query.query_val"
+                                      target="_blank">
+                                    <span t-att-id="query.id" class="fa fa-area-chart icon"/>
+                                    <t t-if="len(query.query_name) > 22">
+                                        <t t-esc="query.query_name[:22] + '...'"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-esc="query.query_name"/>
+                                    </t>
+                                </span>
+
+                                <a t-att-data="query.id">
+                                    <span style="color:red;" t-att-id="query.id" class="fa fa-trash icon-trash"
+                                          onclick="deleteQuery();"/>
+                                </a>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+
+
+                <div class="table-name-container table">
+                    <div class="table-label-container">
+                        <h5 class="pb-2 mt-0">Tables</h5>
+                        <input class="form-control form-control-sm" type="text" id="search-input" onkeyup="listFilter()"
+                               placeholder="Search for table names..."/>
+                    </div>
+                    <ul id="table-names" class="scrollsettings" >
+                        <t t-foreach="tables" t-as="table_name">
+                            <li class="table-name" data-toggle="tooltip" data-placement="right"
+                                t-att-title="table_name[0]">
+
+                                <span class="li-item" t-att-id="table_name[0]">
+                                    <span class="fa fa-table icon"/>
+                                    <t t-esc="table_name[0]"/>
+                                </span>
+                            </li>
+                        </t>
+                    </ul>
+                </div>
+            </div>
+            <div class="dashboard-main" id="tab">
+                <div class="query-input-container">
+                    <div class="d-flex justify-content-between">
+
+                        <div id="myModal" class="modal-container">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <!--                                <span onclick="closeModal()" class="close-button">X</span>-->
+                                <h3>Enter Query Name</h3>
+                                <input class="rounded p-2 mt-3" type="text" id="queryName"
+                                       placeholder="Type the name for your query..." />
+                                <br/>
+                                <br/>
+                                <button class="rounded  m-2 ho" onclick="saveQuery()">Save</button>
+                                <button class="rounded  m-2 ho" onclick="closeModal()">Close</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="formarea d-flex ">
+                        <textarea class="form-control " id="query-input" rows="3"
+                                  placeholder="ENTER THE SQL QUERY"></textarea>
+
+                        <div class="p-2" >
+
+                            <div ><button class="rounded pr-3 pl-3 mx-2 py-2 w-100 mb-2" id="but"
+                                    onmouseover="this.style.transition='background-color 0.5s'; this.style.backgroundColor='rgb(255,158,12)'; this.style.color='#fffff'; "
+                                    onmouseout="this.style.transition='background-color 0.5s'; this.style.backgroundColor=''; this.style.color='';">
+                                <a href="/data-model" style="text-decoration:none;" class="butt">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+                                    </svg>
+                                    Show Data Model
+                                </a>
+                            </button> </div>
+                            <div ><button id="execute-query" class="btn btn-primary pr-3 pl-3 mx-2 mb-2 w-100 ">Execute Query</button></div>
+                            <div ><button class="btn btn-primary pr-3 pl-3 mx-2 mb-2 w-100 " onclick="openModal()"
+                                    data-toggle="modal"
+                                    id="save_sql_query"
+                                    data-target="#saveReportModal">Save Query
+                            </button></div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="table-display-container">
+                    <div class="table-display-options">
+                        <div id="table-display-name">
+                            Table: No table selected
+                        </div>
+                        <div id="table-display-rows_no">
+                            <div class="form-group row mb-0">
+                                <label class="col-sm-4 col-form-label" for="total-rows">
+                                    <b>Rows:</b>
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="total-rows">
+                                        <option>100 </option>
+                                        <option>200</option>
+                                        <option>300</option>
+                                        <option>500</option>
+                                        <option>1000</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+                            <button onclick="exportToExcel()" class="btnn btn btn-primary pr-3 pl-3">
+                                Export To Excel
+                            </button>
+                            <form class="mb-0" target="_blank" onsubmit="return setReportSQLQuery()" method="POST"
+                                  action="/report-dashboard">
+                                <input type="hidden" id="sql-query" name="sql_query" value=""/>
+                            </form>
+                        </div>
+                    </div>
+                    <table id="table-report">
+                        <thead style="background-color:white !important;">
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>

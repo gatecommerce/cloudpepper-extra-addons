@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_odoodatamodel_odoodatamodel","odoodatamodel.odoodatamodel","model_odoodatamodel_odoodatamodel","base.group_user",1,1,1,1
+"access_odooquery_model","odoodatamodel.odooquery_model","model_mini_tableau_query","base.group_user",1,1,1,1
+
