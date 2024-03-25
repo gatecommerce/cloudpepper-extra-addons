@@ -1,0 +1,16 @@
+.nf-pos-main-line-data{
+    max-width: 950px !important;
+    thead{
+        text-align: right;
+        padding: 0.75rem 0.75rem;
+        .nf-product-name-header{
+            text-align: left !important;
+        }
+    }
+    tbody{
+        text-align: right;
+        .nf-product-name{
+            text-align: left !important;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+body{
+    &.pos{
+        .pos-content{
+            .nf-order-list-screen{
+                .orders{
+                    margin: 25px;
+                    overflow: unset !important;
+                    .header-row{
+                        border-radius: 10px 10px;
+                        background-color: #dcdfe0 !important;
+                        color: #514949 !important;
+                    }
+                    .order-row{
+                        transition: transform 0.3s;
+                        margin: 5px 0;
+                        border-radius: 8px;
+                        border: 1px solid #cfd1d3;
+                        background-color: transparent;
+                        &:hover{
+                            transform: scale(1.02);
+                            box-shadow: rgba(50, 50, 93, 0.55) 0px 50px 100px -20px, rgba(0, 0, 0, 0.533) 0px 30px 60px -30px;
+                        }
+                        .col{
+                            padding: 10px 8px !important;
+                        }
+                    }
+                }
+                .screen-full-width{
+                    .nf-pagination{
+                        position: absolute;
+                        bottom: 5px !important;
+                        text-align: center;
+                        width: 100%;
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+    }
+}

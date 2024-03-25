@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="nf_pos_order_list.NfOrderListScreen">
+        <div class="nf-order-list-screen screen ">
+            <div class="screen-full-width d-flex ">
+                <div class="d-flex flex-column flex-grow-1 overflow-y-auto">
+                    <div class="controls d-flex align-items-center justify-content-between mt-1 mt-md-0 p-2 bg-400">
+                        <t t-if="!ui.isSmall">
+                            <div class="buttons d-flex gap-2">
+                                <button class="discard btn btn-lg btn-light" t-on-click="() => this.closeOrderListScreen()">
+                                    <span class="search-icon">
+                                        <i class="fa fa-angle-double-left"/>
+                                    </span>
+                                    <t t-if="!ui.isSmall">
+                                        Back
+                                    </t>
+                                </button>
+                            </div>
+                        </t>
+                        <SearchBar placeholder="constructor.searchPlaceholder" config="nfGetSearchData()" onSearch.bind="onSearch" onFilterSelected.bind="onFilterSelected" />
+                    </div>
+                    <div class="orders overflow-y-auto flex-grow-1">
+                        <t t-set="_filteredOrderList" t-value="getFilteredOrderList()" />
+                        <t t-if="_filteredOrderList and _filteredOrderList.length !== 0">
+                            <div class="header-row d-flex text-bg-700 fw-bolder" t-att-class="{ 'd-none': ui.isSmall }">
+                                <div class="col wide p-2">Date</div>
+                                <div class="col wide p-2">Receipt Number</div>
+                                <div class="col wide p-2">Order number</div>
+                                <div class="col p-2">Customer</div>
+                                <div class="col p-2">Cashier</div>
+                                <div class="col end p-2">Total</div>
+                                <div class="col narrow p-2">Status</div>
+                                <div class="col narrow p-2">Actions</div>
+                            </div>
+                            <t t-if="ui.isSmall" >
+                                <t t-foreach="_filteredOrderList" t-as="order" t-key="order.cid">
+                                    <div t-if="ui.isSmall" class="nf-pos-order-list-data mobileOrderList order-row" t-att-class="{ 'highlight bg-primary text-white': isHighlighted(order) }" t-on-click="() => this.onClickOrder(order)">
+                                        <div class="col p-2 d-flex justify-content-between align-items-center">
+                                            <div><t t-esc="order.name"></t> / <t t-esc="order.trackingNumber"></t></div>
+                                            <div><t t-esc="getTotal(order)"></t></div>
+                                        </div>
+                                        <div t-if="order.get_partner()" class="col p-2 d-flex justify-content-between align-items-center">
+                                            <t t-esc="order.get_partner().name" ></t>
+                                        </div>
+                                        <div class="col p-2 d-flex justify-content-between align-items-center">
+                                            <div ><t t-esc="getDate(order)"></t></div>
+                                            <div class="orderStatus"><t t-esc="getStatus(order)"></t></div>
+                                        </div>
+                                        <div class="col p-2 narrow p-2 d-flex">
+                                            <div class="px-2" t-on-click="() => this.nfDisplayLines(order)" title="Order Lines" >
+                                                <span class="fa fa-bars" ></span>
+                                            </div>
+                                            <div class="px-2" t-on-click="() => this.nfReorder(order)" title="Re-Order" > 
+                                                <span class="fa fa-repeat" ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-else="" >
+                                <t t-foreach="_filteredOrderList" t-as="order" t-key="order.cid">
+                                    <div t-if="!ui.isSmall" class="nf-pos-order-list-desktop-details order-row" t-att-class="{ 'highlight bg-primary text-white': isHighlighted(order) }" t-on-click="() => this.onClickOrder(order)" >
+                                        <div class="col wide p-2 ">
+                                            <div>
+                                                <t t-esc="getDate(order)"></t>
+                                            </div>
+                                        </div>
+                                        <div class="col wide p-2">
+                                            <div>
+                                                <t t-esc="order.name"></t>
+                                            </div>
+                                        </div>
+                                        <div class="col wide p-2">
+                                            <div>
+                                                <t t-esc="order.trackingNumber"></t>
+                                            </div>
+                                        </div>
+                                        <div class="col p-2">
+                                            <div>
+                                                <t t-esc="getPartner(order)"></t>
+                                            </div>
+                                        </div>
+                                        <div class="col p-2">
+                                            <t t-esc="getCashier(order)"></t>
+                                        </div>
+                                        <div class="col end p-2">
+                                            <div>
+                                                <t t-esc="getTotal(order)"></t>
+                                            </div>
+                                        </div>
+                                        <div class="col narrow p-2 orderStatus">
+                                            <div>
+                                                <t t-esc="getStatus(order)"></t>
+                                            </div>
+                                        </div>
+                                        <div class="col narrow p-2 d-flex nf-actions">
+                                            <div class="px-2" t-on-click="() => this.nfDisplayLines(order)" title="Order Lines" >
+                                                <span class="fa fa-bars" ></span>
+                                            </div>
+                                            <div class="px-2" t-on-click="() => this.nfReorder(order)" title="Re-Order" > 
+                                                <span class="fa fa-repeat" ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                    <div t-if="nfPagination()" class="nf-pagination">
+                        <div class="pagination justify-content-center">
+                            <div class="page-item px-2 previous" t-on-click="() => this.onPrevPage()">
+                                <i class="fa fa-fw fa-angle-double-left" role="img" aria-label="Previous Order List" title="Previous Order List"></i>
+                            </div>
+                            <div class="page-item px-2 page">
+                                <span>
+                                    <t t-esc="getPageNumber()" />
+                                </span>
+                            </div>
+                            <div class="page-item px-2 next" t-on-click="() => this.onNextPage()">
+                                <i class="fa fa-fw fa-angle-double-right" role="img" aria-label="Next Order List" title="Next Order List"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

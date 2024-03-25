@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="nf_pos_order_list.nfPosOrderLinesPopup">
+        <div class="nf-pos-main-line-data popups popup">
+            <div class="modal-header">
+                <h4 class="modal-title">Order Line information</h4>
+                <div class="btn" t-on-click="cancel">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+            </div>
+            <main class="body modal-body overflow-auto">
+                <table class="table table-striped w-100">
+                    <thead>
+                        <th class="p-2 nf-product-name-header">Full Product Name</th>
+                        <th class="p-2">Quantity</th>
+                        <th class="p-2">Unit Price</th>
+                        <th class="p-2">Disc.(%)</th>
+                        <th class="p-2">Taxes</th>
+                        <th class="p-2">Subtotal w/o Tax </th>
+                        <th class="p-2">Subtotal</th>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="props.lines" t-as="line" t-key="line">
+                            <tr>
+                                <td class="nf-product-name">
+                                    <t t-esc="line.get_product().display_name" ></t>
+                                </td>
+                                <td>
+                                    <t t-esc="line.quantityStr" ></t>
+                                </td>
+                                <td>
+                                    <t t-esc="env.utils.formatCurrency(line.get_unit_price())" ></t>
+                                </td>
+                                <td>
+                                    <t t-esc="line.discount" ></t>
+                                </td>
+                                <td>
+                                    <t t-foreach="line.tax_ids" t-as="tax_id" t-key="tax_id" >
+                                        <t t-esc="pos.taxes_by_id[tax_id].name " ></t>,
+                                    </t>
+                                </td>
+                                <td>
+                                    <t t-esc="env.utils.formatCurrency(line.get_price_without_tax())" ></t>
+                                </td>
+                                <td>
+                                    <t t-esc="env.utils.formatCurrency(line.get_price_with_tax())" ></t>
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td style="text-align: right !important;" colspan="6" >
+                                <b>
+                                    Texes :
+                                </b> 
+                            </td>
+                            <td >
+                                <t t-esc="env.utils.formatCurrency(props.total_tax)" ></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right !important;" colspan="6" >
+                                <b>
+                                    Total :
+                                </b> 
+                            </td>
+                            <td >
+                                <t t-esc="env.utils.formatCurrency(props.order_total)" ></t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right !important;" colspan="6" >
+                                <b>
+                                    Total Paid : 
+                                </b> 
+                            </td>
+                            <td >
+                                <t t-esc="env.utils.formatCurrency(props.total_paid)" ></t>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </t>
+
+</templates>

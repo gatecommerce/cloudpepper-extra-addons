@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="nf_pos_order_list.NfOrderListButton">
+        <button class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.click()">
+            <i class="oi oi-view-list me-1" role="img" aria-label="OrderList" title="Order List" />
+            Order List
+        </button>
+    </t>
+
+</templates>
