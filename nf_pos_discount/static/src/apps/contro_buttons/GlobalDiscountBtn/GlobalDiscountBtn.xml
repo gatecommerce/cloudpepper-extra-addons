@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="nf_pos_discount.NfGlobalDiscountBtn" owl="1">
+        <div class="control-button btn btn-light rounded-0 fw-bolder" t-on-click="() => this.onClick()">
+            <div>
+                <span class='fa fa-percent'></span>
+                Global Discount
+            </div>
+        </div>
+    </t>
+</templates>
