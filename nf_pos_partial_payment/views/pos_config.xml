@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id='nf_pos_partial_payment_config_form_view' model='ir.ui.view'>
+        <field name='name'>nf.pos.partial.payement.config.form</field>
+        <field name='model'>res.config.settings</field>
+        <field name='inherit_id' ref="point_of_sale.res_config_settings_view_form" />
+        <field name='arch' type='xml'>
+            <setting id="nf_order_list_configuration" position="after" >
+                <setting invisible="not nf_pos_enable_order_list">
+                    <field name="_nf_pos_enable_partial_payment"></field>
+                    <div id="partial_payment_product_config" invisible="not _nf_pos_enable_partial_payment" >
+                        <label for="nf_partial_payment_product" class="col-lg-3 o_light_label"/>
+                        <field name="nf_partial_payment_product" required="_nf_pos_enable_partial_payment" domain="[('is_partial_paid_product','=', True)]"></field>
+                    </div>
+                </setting> 
+            </setting>
+        </field>
+    </record>
+</odoo>

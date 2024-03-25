@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id='nf_pos_partial_payment_pos_order_tree_view' model='ir.ui.view'>
+        <field name='name'>nf.pos.partial.payement.pos.order.tree</field>
+        <field name='model'>pos.order</field>
+        <field name='inherit_id' ref='point_of_sale.view_pos_order_tree' />
+        <field name='arch' type='xml'>
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-warning">state=='partial_paid'</attribute>
+            </xpath>
+            <field name="pos_reference" position="after">
+                <field name="nf_pos_order_reference_id" readonly='1' />
+            </field>
+        </field>
+    </record>
+     <record id='nf_pos_partial_payment_pos_order_form_view' model='ir.ui.view'>
+        <field name='name'>nf.pos.partial.payement.pos.order.form</field>
+        <field name='model'>pos.order</field>
+        <field name='inherit_id' ref='point_of_sale.view_pos_pos_form' />
+        <field name='arch' type='xml'>
+            <field name="pos_reference" position="after">
+                <field name="nf_pos_order_reference_id" readonly='1' />
+            </field>
+            <button name="action_view_invoice" position="attributes">
+                <attribute name="invisible">('state','not in',['invoiced', 'partial_paid'])</attribute>
+            </button>
+        </field>
+    </record>
+   <record id="nf_pos_partial_payment_pos_payment_form" model="ir.ui.view">
+        <field name="name">nf.pos.partial.payemnt.payment.form</field>
+        <field name="model">pos.payment</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_payment_form"></field>
+        <field name="arch" type="xml">
+            <field name="session_id" position="after">
+                <field name="nf_partial_payment_session_id" readonly='1'></field>
+            </field>
+        </field>
+    </record>
+</odoo>
