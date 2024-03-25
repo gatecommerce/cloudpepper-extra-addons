@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<templates id="template" xml:space="preserve">
+
+	<t t-name="bi_pos_order_restore.MultiChoicePopup">
+		<div class="popup popup-selection">
+			<div class="modal-header">
+				<h4 class="modal-title">Choose Your Operation</h4>
+			</div>
+
+			<div class="modal-body d-flex">
+				<div href='#' id="download-data" class="download-data" t-on-click="() => this.download_data()">
+					<i class="fa fa-cloud-download" style="color:#01666b !important; font-size:65px; margin-top:20px;"/>
+						<br/>
+					<h4 style="font-family: system-ui; font-weight: 400;">Download Unsaved Orders</h4>
+				</div>
+
+				<div  href='#' id="delete-data" class="delete-data" t-on-click="() => this.delete_data()">
+					<i class="fa fa-trash-o" style="color:#01666b !important; font-size:65px; margin-top:20px;"/>
+						<br/>
+					<h4 style="font-family: system-ui; font-weight: 400;">Delete Unsaved Orders</h4>
+				</div>
+
+			</div>
+
+			<footer class="footer footer-flex modal-footer">
+				<div class="button cancel" t-on-click="cancel">
+					Close
+				</div>
+			</footer>
+
+			<!-- <footer class="footer">
+				<div class="button cancel" t-on-click="cancel">
+					Close
+				</div>
+			</footer> -->
+	</div>
+	</t>
+
+</templates>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+bi_pos_order_restore.access_import_data_wizard,access_import_data_wizard,bi_pos_order_restore.model_import_data_wizard,base.group_user,1,1,1,1
+bi_pos_order_restore.access_order_data,access_order_data,bi_pos_order_restore.model_order_data,base.group_user,1,1,1,1

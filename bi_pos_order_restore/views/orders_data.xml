@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="pos_order_restore_backup_form_view" model="ir.ui.view">
+		<field name="name">pos.order.restore.backup.form</field>
+		<field name="model">order.data</field>
+		<field name="arch" type="xml">
+			<form string="Delivery Order" create='false'>
+				<header>
+                    <button name="create_order"  type="object" string="Create Order" class="oe_highlight"
+                    	invisible = "state != 'open'"/>
+                    <button name="cancel_order" type="object" string="Cancel" class="oe_highlight"
+							invisible = "state != 'open'"/>
+					<field name="state" widget="statusbar"  statusbar_visible="open,cancel,done" />
+				</header>
+				<sheet>
+					<group>
+						<field name="name"/>
+						<field name="order_JSON" />
+						<field name="result" string="Result"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="pos_order_restore_backup_tree_view" model="ir.ui.view">
+		<field name="name">pos.order.restore.backup.tree</field>
+		<field name="model">order.data</field>
+		<field name="arch" type="xml">
+			<tree string="Order Data" create='false'>
+				<field name="name"/>
+				<field name="state"/>
+                <button name="create_order" type="object" string="Create Order" class="oe_highlight"
+						invisible = "state != 'open'"/>
+            </tree>
+		</field>
+	</record>
+
+	<record id="pos_order_restore_backup_action" model="ir.actions.act_window">
+		<field name="name">Restored Orders Data</field>
+		<field name="res_model">order.data</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="pos_order_restore_backup_tree_view"/>
+	</record>
+
+	<menuitem name="Restored Orders Data" id="menu_order_restore_backup_id"
+              action="pos_order_restore_backup_action" parent="menu_point_order_restore"/>
+
+</odoo>

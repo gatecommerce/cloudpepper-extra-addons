@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="import_data_wizard_view_form" model="ir.ui.view">
+        <field name="name">import.data.wizard.form</field>
+        <field name="model">import.data.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Data Wizard">
+                <group class="oe_title">
+                    <field name="add_attachment" required="1"/>
+                </group>
+                <footer>
+                    <button name="import_data" string="Import Data" type="object" class="btn-primary"/>
+                    <button name="import_data_with_create_order" string="Import Data + Create Order" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="import_data_wizard_action" model="ir.actions.act_window">
+        <field name="name">Import Data Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">import.data.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="import_data_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_point_order_restore" name="Order Restore/Backup"
+        parent="point_of_sale.menu_point_root" sequence="50"/>
+
+    <menuitem id="import_data_wizard_menu" parent="menu_point_order_restore"
+        sequence="2" name="JSON Order Data Import" action="import_data_wizard_action"/>
+</odoo>

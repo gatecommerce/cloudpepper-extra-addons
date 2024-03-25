@@ -1,0 +1,11 @@
+div#download-data, div#delete-data {
+    border: groove;
+    margin-top: 20px;
+    display: inline-block;
+    width: 189px;
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 195px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
