@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="bi_inherit_product_template" model="ir.ui.view">
+            <field name="name">bi.inherit.product.template</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('d-flex')]" position="after">
+                    <br/>
+                    <field name="url" placeholder="Enter Product Image URL" class="o_text_overflow"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="bi_inherit_product_image">
+        <field name="name">product.image.form.inherite</field>
+        <field name="model">product.image</field>
+        <field name="inherit_id" ref="website_sale.view_product_image_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+
+            <xpath expr='//div[@class="col-md-6 col-xl-5"]' position='inside'>
+                <footer>
+                    <button name="set_image" string="Set As Product Image" type="object"/>
+                </footer>
+            </xpath>
+        </field>
+    </record>
+
+
+    </data>
+</odoo>

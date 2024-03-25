@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* import_image_from_url
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-14 12:32+0000\n"
+"PO-Revision-Date: 2021-06-14 12:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: import_image_from_url
+#: model_terms:ir.ui.view,arch_db:import_image_from_url.bi_inherit_product_template
+msgid "Enter Product Image URL"
+msgstr "أدخل عنوان URL لصورة المنتج"
+
+#. module: import_image_from_url
+#: model:ir.model,name:import_image_from_url.model_product_image
+msgid "Product Image"
+msgstr "صورة المنتج"
+
+#. module: import_image_from_url
+#: model:ir.model,name:import_image_from_url.model_product_template
+msgid "Product Template"
+msgstr "نموذج المنتج"
+
+#. module: import_image_from_url
+#: model_terms:ir.ui.view,arch_db:import_image_from_url.bi_inherit_product_image
+msgid "Set As Product Image"
+msgstr "تعيين كصورة المنتج"
+
+#. module: import_image_from_url
+#: model:ir.model.fields,field_description:import_image_from_url.field_product_product__url
+#: model:ir.model.fields,field_description:import_image_from_url.field_product_template__url
+msgid "URL"
+msgstr "URL"
