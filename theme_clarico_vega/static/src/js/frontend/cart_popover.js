@@ -49,7 +49,7 @@ $(document).mouseup(function (ev) {
          $(".mycart-popover").removeClass("te_open");
         $("#wrapwrap").removeClass("te_overlay");
         $('.mycart-popover').removeClass('show');
-//        $('.mycart-popover').remove();
+        $('.mycart-popover').remove();
         $('header#top').css({'z-index': ''});
     }
 });
@@ -58,7 +58,7 @@ $(document).on('click', '.te_cross', function() {
     $(".mycart-popover").removeClass("te_open");
     $("#wrapwrap").removeClass("te_overlay");
     $('.mycart-popover').removeClass('show');
-//    $('.mycart-popover').remove();
+    $('.mycart-popover').remove();
     $('header#top').css({'z-index': ''});
     if ($(window).width() <= 768) {
         $('.mycart-popover').remove();

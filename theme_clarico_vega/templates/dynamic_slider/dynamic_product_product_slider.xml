@@ -30,12 +30,12 @@
                     <t t-if="record.product_tmpl_id.website_ribbon_id">
                         <t t-if="html_class and any(cls in ['o_product_label_style_4_left','o_product_label_style_4_right'] for cls in html_class.split(' '))">
                             <span t-attf-class="o_ribbon #{html_class}"
-                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color + ' !important'}"
+                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                         <t t-else="">
                             <span t-attf-class="#{html_class}"
-                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color} !important; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
+                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color}; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                     </t>
@@ -94,12 +94,12 @@
                     <t t-if="record.product_tmpl_id.website_ribbon_id">
                         <t t-if="html_class and any(cls in ['o_product_label_style_4_left','o_product_label_style_4_right'] for cls in html_class.split(' '))">
                             <span t-attf-class="o_ribbon #{html_class}"
-                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color + ' !important'}"
+                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                         <t t-else="">
                             <span t-attf-class="#{html_class}"
-                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color} !important; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
+                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color}; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                     </t>
@@ -163,12 +163,12 @@
                     <t t-if="record.product_tmpl_id.website_ribbon_id">
                         <t t-if="html_class and any(cls in ['o_product_label_style_4_left','o_product_label_style_4_right'] for cls in html_class.split(' '))">
                             <span t-attf-class="o_ribbon #{html_class}"
-                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color + ' !important'}"
+                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                         <t t-else="">
                             <span t-attf-class="#{html_class}"
-                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color} !important; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
+                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color}; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                     </t>
@@ -232,12 +232,12 @@
                 <t t-if="record.product_tmpl_id.website_ribbon_id">
                         <t t-if="html_class and any(cls in ['o_product_label_style_4_left','o_product_label_style_4_right'] for cls in html_class.split(' '))">
                             <span t-attf-class="o_ribbon #{html_class}"
-                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color + ' !important'}"
+                                  t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                         <t t-else="">
                             <span t-attf-class="#{html_class}"
-                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color} !important; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
+                                  t-attf-style="background-color: #{record.product_tmpl_id.website_ribbon_id.bg_color}; color: #{record.product_tmpl_id.website_ribbon_id.text_color}"
                                   t-out="record.product_tmpl_id.website_ribbon_id.html"/>
                         </t>
                     </t>

@@ -43,6 +43,7 @@ class ProductTabLine(models.Model):
             self.product_id = None
 
     def write(self, vals):
+        self.clear_caches()
         context = dict(self._context or {})
         model_name = context.get('tree_view_ref', False)
         if model_name and model_name == 'website_sale.product_template_view_tree_website_sale' and self.tab_type == 'global':
@@ -56,4 +57,7 @@ class ProductTabLine(models.Model):
         elif len(vals) == 1 and (vals.get('sequence', False) or vals.get('tab_content', False)):
             return super(ProductTabLine, self).write(vals)
         return True
-#
+
+    def unlink(self):
+        self.clear_caches()
+        return super(ProductTabLine, self).unlink()

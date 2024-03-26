@@ -16,3 +16,4 @@ from . import synonym_group
 from . import search_keyword_report
 from . import product_ribbon
 from . import website_snippet_filter
+from . import pwa_app_shortcuts

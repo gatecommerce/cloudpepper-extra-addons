@@ -259,15 +259,31 @@ animations.registry.StickyGallery = animations.Animation.extend({
                 /* Mobile view sticky add to cart */
                 if ($(window).width() <= 767) {
                     var relativeBtn = $('main').height() + $('header').height();
+                    var pwaStickyHeight = $('.mobile_header_component-style-1').outerHeight();
+                    var productStickyHeight = $('.product_details_sticky').outerHeight();
                     if(scroll < relativeBtn){
                         $('#add_to_cart_wrap .js_check_product, .o_we_buy_now').css('display','none');
                         stickyMobileDevice(fixIconHeaderStyle, btnHeight, cookie_height);
+                        $('.ios-prompt').css({'margin-bottom': '0', 'bottom': productStickyHeight});
+                        if($('.mobile_header_component-style-1').length) {
+                            $('.ios-prompt').css('bottom', $('.mobile_header_component-style-1').outerHeight());
+                            if($('.product_details_sticky').length){
+                                $('.ios-prompt').css({'bottom': pwaStickyHeight+productStickyHeight});
+                            }
+                        }
                         if($('.o_cookies_discrete').length != 0){
                              $('.o_cookies_discrete .s_popup_size_full .oe_structure').css({'bottom':$('.product_details_sticky').height()});
                         }
                     }
                     else{
                         $('div#wrapwrap .product_details_sticky').fadeOut();
+
+                         if($('.ios-prompt') && $('.mobile_header_component-style-1').length == 0){
+                            $('.ios-prompt').css('bottom', 0)
+                         }
+                         else{
+                            $('.ios-prompt').css('bottom', pwaStickyHeight);
+                         }
                         $('.o_cookies_discrete .s_popup_size_full .oe_structure').css({'bottom':0});
                         chatBtn(fixIconHeaderStyle, btnHeight, cookie_height);
                     }
@@ -275,6 +291,41 @@ animations.registry.StickyGallery = animations.Animation.extend({
             }
         }
     },
+});
+ //  Sticky filter in shop page
+animations.registry.StickyFilter = animations.Animation.extend({
+    selector: '#wrapwrap',
+        effects: [{
+            startEvents: 'scroll',
+            update: '_stickyFilter',
+        }],
+        init: function() {
+            this._super(...arguments);
+            var getClass = $('body').find('.te_shop_filter_resp');
+            if (getClass.length > 0){
+                this.stickyTop = getClass.offset().top;
+            }
+        },
+         _stickyFilter: function(scroll) {
+               if ($(window).width() < 768) {
+                    var $stickyFilter = $('.te_shop_filter_resp');
+                    if (!!$stickyFilter.offset()) {
+                        var sidebar_height = $stickyFilter.innerHeight();
+                        var stickyTop = $stickyFilter.offset().top;
+                        var windowHeight = $(window).height() - 125;
+                        const stickyFilterStyle = { width: window.innerWidth, padding: '0px 15px', margin: '0px auto', 'background-color': '#FFF', 'z-index': '8' }
+                        if ((this.stickyTop < scroll)) {
+                            if ($('.o_top_fixed_element').length) {
+                                $('.products_header').css({ position: 'sticky', top: $('header').height() }).css(stickyFilterStyle);
+                            } else {
+                                $('.products_header').css({ position: 'relative', top: 'initial' });
+                            }
+                        } else {
+                            $('.products_header').css({ position: 'relative', top: 'initial' }).css(stickyFilterStyle);
+                        }
+                    }
+               }
+        },
 });
 registry.brandPage = publicWidget.Widget.extend(OwlMixin, {
     selector: ".featured-all-brands",
