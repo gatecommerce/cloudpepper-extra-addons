@@ -15,11 +15,11 @@
                 <!--                    <hr/>-->
                 <group>
                     <field name="dynamic_mega_menu" invisible="is_mega_menu != True"/>
-                    <field name="category_selection" invisible="is_mega_menu != True or dynamic_mega_menu != True"/>
+                    <field name="category_selection" invisible="is_mega_menu != True or dynamic_mega_menu != True" required="dynamic_mega_menu == True"/>
                     <field name="ecom_category"
-                           invisible="is_mega_menu != True or dynamic_mega_menu != True or category_selection == 'all'"/>
+                           invisible="is_mega_menu != True or dynamic_mega_menu != True or category_selection == 'all'" required="dynamic_mega_menu == True and category_selection == 'specific'"/>
                     <field name="category_menu_styles"
-                           invisible="is_mega_menu != True or dynamic_mega_menu != True"/>
+                           invisible="is_mega_menu != True or dynamic_mega_menu != True" required="dynamic_mega_menu != False"/>
                 </group>
             </xpath>
             <xpath expr="//form/sheet/group" position="after">
