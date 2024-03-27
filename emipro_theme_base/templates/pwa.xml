@@ -166,18 +166,7 @@
         "start_url": "<t t-esc="pwa_start_url"/>",
         "display": "standalone",
         "background_color": "<t t-esc="background_color"/>",
-        "theme_color": "<t t-esc="theme_color"/>",
-        "shortcuts": [
-            <t t-set="count" t-value="0"/>
-            <t t-foreach="shortcuts" t-as="shortcut">
-            {"name": "<t t-esc="shortcut.get('name')"/>",
-            "short_name": "<t t-esc="shortcut.get('name')"/>",
-            "description": "<t t-esc="shortcut.get('description')"/>",
-            "url": "<t t-esc="shortcut.get('url')"/>",
-            "icons": [{ "src": "<t t-esc="shortcut.get('icon')"/>", "sizes": "192x192"}]
-            }<t t-set="count" t-value="count+1"/> <t t-if="count != len(shortcuts)">,</t>
-            </t>
-        ]
+        "theme_color": "<t t-esc="theme_color"/>"
         }
     </template>
 </odoo>

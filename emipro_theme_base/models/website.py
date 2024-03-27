@@ -79,8 +79,6 @@ class Website(models.Model):
     show_stock_filter = fields.Boolean('Show Stock Filter in Shop Page', default=True)
     signup_captcha_option = fields.Boolean('Captcha in SignUp', help='Enable Captcha for the signup')
 
-    pwa_shortcuts_ids = fields.One2many('pwa.app.shortcut.ept', 'website_id', string='PWA Shortcuts')
-
     @api.onchange('signup_captcha_option')
     def _onchange_signup_captcha_option(self):
         if self.signup_captcha_option:
@@ -333,10 +331,10 @@ class Website(models.Model):
             ('discount asc', _('Discount'))
         ]
     def get_all_product_template_filter(self):
-        return self.env.ref('emipro_theme_base.dynamic_filter_product_template').id
+        return self.env.ref('theme_clarico_vega.dynamic_filter_template_product_public_category_style_1').id
 
     def get_all_product_public_category_template_filter(self):
-        return self.env.ref('emipro_theme_base.dynamic_filter_category').id
+        return self.env.ref('theme_clarico_vega.dynamic_filter_template_product_public_category_style_1').id
 
     def get_all_product_brand_template_filter(self):
-        return self.env.ref('emipro_theme_base.dynamic_filter_brand').id
+        return self.env.ref('theme_clarico_vega.dynamic_filter_template_product_brand_style_1').id
