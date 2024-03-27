@@ -35,7 +35,7 @@
         </xpath>
 
         <xpath expr="//div[hasclass('o_search_result_item_detail')]" position="attributes">
-            <attribute name="t-attf-class" add="media-body" separator=" "/>
+            <attribute name="class">media-body o_search_result_item_detail px-3</attribute>
         </xpath>
 
         <xpath expr="//a[@t-foreach='results']" position="before">

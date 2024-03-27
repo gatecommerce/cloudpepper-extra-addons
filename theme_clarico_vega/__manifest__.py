@@ -5,7 +5,7 @@
     'name': 'Theme Clarico Vega',
     'category': 'Theme/eCommerce',
     'summary': 'An Odoo eCommerce Solution with a lot of well-analized features. Suitable for all kind of eCommerce Businesses like Furniture, Fashion, Electronics, Beauty, Fitness, Jewelry, etc.',
-    'version': '17.0.0.5',
+    'version': '17.0.0.3',
     'license': 'OPL-1',
     'depends': [
         'emipro_theme_base', 'website_mass_mailing',
@@ -38,7 +38,6 @@
         'templates/image_hotspot_popup.xml',
         'templates/cart.xml',
         'templates/blog.xml',
-        'templates/templates.xml',
     ],
     'assets': {
         'web._assets_frontend_helpers': [

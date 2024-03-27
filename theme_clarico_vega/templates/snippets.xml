@@ -7,10 +7,10 @@
             <div id="theme_vega_editor" class="o_panel">
                 <div class="o_panel_header">Dynamic Snippets</div>
                 <div class="o_panel_body">
-                    <t t-snippet="theme_clarico_vega.dynamic_multi_columns_category" string="Product Builder with Category" t-thumbnail="/theme_clarico_vega/static/src/img/product-category.png">
+                    <t t-snippet="theme_clarico_vega.dynamic_multi_columns_category" string="Product Builder with Category" t-thumbnail="/theme_clarico_vega/static/src/img/product-with-category.png">
                         <keywords>dynamic, columns</keywords>
                     </t>
-                    <t t-snippet="theme_clarico_vega.dynamic_multi_columns_brand" string="Product Builder with Brand" t-thumbnail="/theme_clarico_vega/static/src/img/product-brand.png">
+                    <t t-snippet="theme_clarico_vega.dynamic_multi_columns_brand" string="Product Builder with Brand" t-thumbnail="/theme_clarico_vega/static/src/img/product-with-brand.png">
                         <keywords>dynamic, columns</keywords>
                     </t>
                     <t t-snippet="theme_clarico_vega.s_dynamic_snippet_category" string="E-commerce Categories" t-thumbnail="/theme_clarico_vega/static/src/img/snippets/snippets_icon/category_carousel.jpg">

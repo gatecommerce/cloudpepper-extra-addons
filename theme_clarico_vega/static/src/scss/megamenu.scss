@@ -195,6 +195,7 @@ section p > a, section a > p {
           max-height: 65px;
         }
         a {
+            width: 100%;
             transition: transform 0.8s;
             transform-style: preserve-3d;
         }

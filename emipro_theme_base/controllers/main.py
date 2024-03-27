@@ -229,19 +229,13 @@ class WebsiteSaleExt(WebsiteSale):
             else:
                 post['tags'] = None
 
-        if category:
-            category_id = request.env['product.public.category'].sudo().browse(int(category)) if (
-                isinstance(category, str)) else category
-        else:
-            category_id = None
-
         # Category Count
-        category_count = self.get_category_count_details(product_ids, category_id, attrib_values, min_price, max_price,
+        category_count = self.get_category_count_details(product_ids, category, attrib_values, min_price, max_price,
                                                          conversion_rate, website, attrib_set, search, **post)
         res.qcontext.update(category_count=category_count)
 
         # Tag Count
-        tag_count = self.get_tag_count_details(product_ids, category_id, attrib_values, min_price, max_price,
+        tag_count = self.get_tag_count_details(product_ids, category, attrib_values, min_price, max_price,
                                                conversion_rate, website, attrib_set, search, **post)
         res.qcontext.update(tag_count=tag_count)
 
@@ -268,7 +262,7 @@ class WebsiteSaleExt(WebsiteSale):
             res.qcontext.update(attribute_value_count=attribute_value_count)
         else:
             options = self._get_search_options(
-                category=category_id,
+                category=category,
                 attrib_values=attrib_values, min_price=min_price,
                 max_price=max_price,
                 conversion_rate=conversion_rate,
@@ -446,8 +440,6 @@ class WebsiteExt(main.Website):
         """ Render categories and brand and attribute value information based on the configuration
         of the Advanced search
         """
-        if search_type == 'products':
-            search_type = 'products_only'
         res = super().autocomplete(search_type, term, order, limit, max_nb_chars, options)
         filtered_results = [rs for rs in res['results'] if rs.get('_fa') != 'fa-folder-o']
         res['results'] = filtered_results
