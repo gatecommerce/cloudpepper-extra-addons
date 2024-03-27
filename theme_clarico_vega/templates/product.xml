@@ -86,13 +86,13 @@
                 <t t-set="ribbon_cls" t-value="ribbon['html_class'] and any(cls in ['o_ribbon_left','o_ribbon_right'] for cls in ribbon['html_class'].split(' '))"/>
                 <t t-if="ribbon_cls">
                     <span t-attf-class="te_prod_label d-inline-block overflow-hidden position-relative #{ribbon['html_class'] if ribbon_cls else ''}"
-                          t-attf-style="#{ribbon['bg_color'] and ('background-color: %s; ' % ribbon['bg_color'])} #{ribbon['text_color'] and ('color: %s !important; ' % ribbon['text_color'])}">
+                          t-attf-style="#{ribbon['bg_color'] and ('background-color: %s !important; ' % ribbon['bg_color'])} #{ribbon['text_color'] and ('color: %s !important; ' % ribbon['text_color'])}">
                         <t t-out="ribbon['html'] or ''"/>
                     </span>
                 </t>
                 <t t-else="">
                     <span t-attf-class="te_prod_label d-inline-block overflow-hidden position-relative #{ribbon['html_class'] if not (ribbon['bg_color'] and ribbon['text_color']) else ' '}"
-                          t-attf-style="#{ribbon['bg_color'] and ('background-color: %s; ' % ribbon['bg_color'])} #{ribbon['text_color'] and ('color: %s !important; ' % ribbon['text_color'])}">
+                          t-attf-style="#{ribbon['bg_color'] and ('background-color: %s !important; ' % ribbon['bg_color'])} #{ribbon['text_color'] and ('color: %s !important; ' % ribbon['text_color'])}">
                         <t t-out="ribbon['html'] or ''"/>
                     </span>
                 </t>

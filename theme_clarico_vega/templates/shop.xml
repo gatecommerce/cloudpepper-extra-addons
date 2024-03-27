@@ -69,8 +69,8 @@
             <attribute name="class" remove="flex-nowrap" separator=" "/>
         </xpath>
         <xpath expr="//aside[@id='products_grid_before']" position="before">
-            <div class="products_header btn-toolbar mb-3">
-                <div class="total_product d-none d-lg-block ps-3 ">
+            <div class="products_header btn-toolbar flex-nowrap align-items-center justify-content-between gap-3 mb-3">
+                <div class="total_product d-none d-sm-block ps-3 ">
                     <span class="align-middle" t-esc="search_count"/>
                     <span class="align-middle pe-2">Product(s)</span>
                     <div class="te_product_filters d-inline-block">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="products_page_options d-lg-flex justify-content-lg-end gap-2">
+                <div class="products_page_options d-flex justify-content-end gap-2">
                     <t t-if="is_view_active('website_sale.search')" t-call="website_sale.search">
                     <t t-set="search" t-value="original_search or search"/>
                     <t t-set="_form_classes" t-valuef="d-lg-inline {{'d-inline' if not category else 'd-none'}}"/>
@@ -129,7 +129,7 @@
                     <t t-call="website_sale.pricelist_list" t-cache="pricelist">
                         <t t-set="_classes" t-valuef="d-none d-lg-inline"/>
                     </t>
-                    <div t-if="category" class="align-items-center d-none me-auto">
+                    <div t-if="category" class="d-flex align-items-center d-lg-none me-auto">
                         <t t-if="not category.parent_id" t-set="backUrl" t-valuef="/shop"/>
                         <t t-else="" t-set="backUrl" t-value="keep('/shop/category/' + slug(category.parent_id), category=0)"/>
                         <a t-attf-class="btn btn-{{navClass}} me-2" t-att-href="category.parent_id and keep('/shop/category/' + slug(category.parent_id), category=0) or '/shop'">
@@ -140,49 +140,21 @@
                     <t t-if="is_view_active('website_sale.add_grid_or_list_option')" t-call="website_sale.add_grid_or_list_option">
                         <t t-set="_classes" t-valuef="d-flex"/>
                     </t>
+                    <button t-if="is_view_active('website_sale.sort') or opt_wsale_categories or opt_wsale_attributes or opt_wsale_attributes_top"
+                            t-attf-class="btn btn-{{navClass}} position-relative {{not opt_wsale_attributes_top and 'd-lg-none'}}"
+                            data-bs-toggle="offcanvas"
+                            data-bs-target="#o_wsale_offcanvas">
+                        <i class="fa fa-sliders"/>
+                        <span t-if="isFilteringByPrice or attrib_set or tags" t-attf-class="position-absolute top-0 start-100 translate-middle border border-{{navClass}} rounded-circle bg-danger p-1"><span class="visually-hidden">filters active</span></span>
+                    </button>
                     <t t-if="is_view_active('website_sale.sort')" t-call="website_sale.sort">
                         <t t-set="_classes" t-valuef="d-none d-lg-inline-block"/>
                     </t>
-                    <button t-if="is_view_active('website_sale.sort') or opt_wsale_categories or opt_wsale_attributes or opt_wsale_attributes_top"
-                        t-attf-class="btn card_hover_btn position-relative {{not opt_wsale_attributes_top and 'd-lg-none'}} te_shop_filter_resp"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#o_wsale_offcanvas">
-                    <t t-set="attrib_count" t-value="{v[0] for v in attrib_values}"/>
-                    <div class="position-relative">
-                        <span class="te_mb_filter_parent position-relative fa fa-filter me-2">
-                            <sup t-if="len(attrib_count) > 0" t-esc="len(attrib_count)"
-                                 class="te_mb_filter_count badge badge-primary"/>
-                        </span>
-                        <span class="filters-title-ept">Filters</span>
-                    </div>
-                </button>
                 </div>
             </div>
         </xpath>
     </template>
-    <!-- ==================== filter sort by  ==================== -->
-    <template id="filter_sort_by" inherit_id="website_sale.sort">
-        <xpath expr="." position="replace">
-            <div t-attf-class="o_sortby_dropdown dropdown dropdown_sorty_by">
-                    <small class="d-none d-lg-inline text-muted">Sort By:</small>
-                    <a role="button" href="#" t-attf-class="dropdown-toggle btn btn-{{navClass}}" data-bs-toggle="dropdown">
-                        <span class="d-none d-lg-inline">
-                            <t t-if="isSortingBy" t-out="isSortingBy[0][1]"/>
-                            <span t-else="1" t-field="website.shop_default_sort"/>
-                        </span>
-                        <i class="fa fa-sort-amount-asc d-md-block d-lg-none"/>
-                        <small class="sort_by_mobi">Sort By</small>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end" role="menu">
-                        <t t-foreach="website_sale_sortable" t-as="sortby">
-                            <a role="menuitem" rel="noindex,nofollow" t-att-href="keep('/shop', order=sortby[0])" class="dropdown-item">
-                                <span t-out="sortby[1]"/>
-                            </a>
-                        </t>
-                    </div>
-                </div>
-        </xpath>
-    </template>
+
     <template id="products_item_ept" inherit_id="website_sale.products_item">
         <xpath expr="//span[@t-field='image_holder.image_1920']" position="replace">
             <t t-if="website.is_lazy_load">
@@ -283,12 +255,12 @@
             <t t-set="bg_class" t-value="td_product['ribbon']['html_class']"/>
             <t t-if="bg_class and any(cls in ['o_product_label_style_4_left','o_product_label_style_4_right'] for cls in bg_class.split(' '))">
                 <span t-attf-class="o_ribbon #{bg_class}"
-                      t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color}"
+                      t-attf-style="#{bg_color and ('border-bottom-color: %s; ' % bg_color)} #{bg_color and ('border-left-color: %s; ' % bg_color)} #{text_color and ('color: %s; ' % text_color)} #{bg_color and 'background-color:' + bg_color + ' !important'}"
                       t-field="product.website_ribbon_id.html"/>
             </t>
             <t t-else="">
                 <span t-attf-class="o_ribbon #{bg_class}"
-                      t-attf-style="#{text_color and ('color: %s; ' % text_color)}#{bg_color and 'background-color:' + bg_color}"
+                      t-attf-style="#{text_color and ('color: %s; ' % text_color)}#{bg_color and 'background-color:' + bg_color + ' !important'}"
                       t-field="product.website_ribbon_id.html"/>
             </t>
         </xpath>

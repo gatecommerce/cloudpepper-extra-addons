@@ -504,14 +504,14 @@
 		<xpath expr="//li[@t-elif='show_dropdown']" position="attributes">
 			<attribute name="t-att-id">submenu.id</attribute>
 		</xpath>
-		<!--<xpath expr="//li//div[@t-if='submenu.is_mega_menu']" position="replace">
-            &lt;!&ndash; If category and not style 5 & nested menu style  &ndash;&gt;
+		<xpath expr="//li//div[@t-if='submenu.is_mega_menu']" position="replace">
+            <!-- If category and not style 5 & nested menu style  -->
             <div t-if="submenu.dynamic_mega_menu"
                  t-attf-class="dropdown-menu o_mega_menu #{submenu.mega_menu_classes}" data-name="Mega Menu" t-field="submenu.mega_menu_content"/>
-            &lt;!&ndash; If not category &ndash;&gt;
+            <!-- If not category -->
             <div t-if="submenu.is_mega_menu and not submenu.dynamic_mega_menu"
                  t-attf-class="dropdown-menu o_mega_menu #{submenu.mega_menu_classes}" data-name="Mega Menu" t-field="submenu.mega_menu_content"/>
-		</xpath>-->
+		</xpath>
 		<xpath expr="//li[@t-if='submenu.is_visible and not (submenu.child_id or submenu.is_mega_menu)']//span[@t-field='submenu.name']" position="after">
 			<t t-if="request.website.viewref('theme_clarico_vega.website_submenu_label_ept').active">
 				<span id="menu_label_tx_span" class="text-center" t-if="submenu.menu_label_id">
@@ -525,7 +525,7 @@
 			<t t-set="item_class" t-value="(submenu.dynamic_mega_menu and submenu.category_menu_styles == 'style5') and (item_class and item_class or '') + ' m_custom te_all_dynamic_ept' or item_class"/>
 			<t t-set="item_class" t-value="(submenu.dynamic_mega_menu) and (item_class and item_class or '') + ' te_mega_menu_ept' or item_class"/>
 		</xpath>
-		<!--<xpath expr="//li[@t-elif='show_dropdown']//ul" position="replace">
+		<xpath expr="//li[@t-elif='show_dropdown']//ul" position="replace">
 			<ul t-if="not submenu.is_mega_menu" class="dropdown-menu" role="menu">
 				<t t-foreach="submenu.child_id" t-as="submenu">
 					<t t-call="website.submenu">
@@ -534,7 +534,7 @@
 					</t>
 				</t>
 			</ul>
-		</xpath>-->
+		</xpath>
 
 		<xpath expr="//li[@t-elif='show_dropdown']//a" position="replace">
 			<a t-if="submenu.dynamic_mega_menu" t-attf-class="#{link_class or ''} dropdown-toggle #{submenu.is_mega_menu and 'o_mega_menu_toggle'}"
