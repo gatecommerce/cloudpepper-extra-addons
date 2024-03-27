@@ -78,6 +78,19 @@ class PwaMain(http.Controller):
             'background_color': website.pwa_bg_color or '#dddddd',
             'theme_color': website.pwa_theme_color or '#dddddd',
         })
+        if website.pwa_shortcuts_ids:
+            pwa_shortcuts = []
+            for pwa_shortcut in website.pwa_shortcuts_ids:
+                pwa_shortcuts.append({
+                    'name': pwa_shortcut.name or '',
+                    'short_name': pwa_shortcut.name or '',
+                    'description': pwa_shortcut.description or '',
+                    'url': pwa_shortcut.url or '/',
+                    'icon': f'/web/image/pwa.app.shortcut.ept/{pwa_shortcut.id}/icon/192x192'
+                })
+            values.update({
+                'shortcuts': pwa_shortcuts
+            })
         content = http.Response(template="emipro_theme_base.manifest", qcontext=values).render()
         return request.make_response(content, [('Content-Type', 'application/json;charset=utf-8')])
     
