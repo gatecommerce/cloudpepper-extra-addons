@@ -131,7 +131,7 @@
         <section t-if="category_menu_styles == 'style3'"
                  class="te_menu_style_4 s_mega_menu_style_4 container-fluid te_icons_menu_main py-3 px-3 dynamic_menu"
                  t-att-menu_id="menu.id">
-            <a t-esc="menu.name" class="te_menu_name mt-0 d-block" t-att-href="menu.category_selection == 'specific' and '/shop/category/%s' %slug(menu.ecom_category) or menu.url or '#'"/>
+            <a t-esc="menu.name" class="te_menu_name mt-0 d-block pb-1" t-att-href="menu.category_selection == 'specific' and '/shop/category/%s' %slug(menu.ecom_category) or menu.url or '#'"/>
             <div class="container w-100">
                 <div class="row">
                     <t t-set="selected_category" t-value="menu.category_selection"/>
@@ -384,7 +384,7 @@
                                                     <t t-set="child_ids" t-value="c.child_id"/>
                                                     <a class="te_menu_name p-3 d-block" t-field="c.name" t-att-href="category_url"/>
                                                     <t t-if="child_ids" t-foreach="child_ids" t-as="child_id">
-                                                        <div class="col-xl-3 col-lg-4 col-md-6 category_column position-relative">
+                                                        <div class="col-xl-3 col-lg-4 col-md-6 col-6 category_column position-relative">
                                                             <t t-if="child_id.is_category_page">
                                                                 <t t-set="category_url"
                                                                    t-value="child_id.category_page.url"/>

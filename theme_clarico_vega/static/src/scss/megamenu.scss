@@ -59,9 +59,17 @@
 }
 .te_menu_style_1 {
     @include media-breakpoint-down(sm) {
+        .menu-items{
+            display: flex;
+            flex-wrap: wrap;
+        }
         .te_category-heading-center {
+            -webkit-box-flex: 0;
+            flex: 0 0 auto;
+            width: 50%;
+            padding-right: 0.5rem;
             a.te_menu_item {
-                margin: 0px auto;
+                margin: 0px auto !important;
             }
         }
         .te_menu_category_heading {
@@ -188,8 +196,11 @@ section p > a, section a > p {
             max-width: 20%;
         }
         @include media-breakpoint-down(sm) {
-            flex: 50%;
-            max-width: 50%;
+            flex: 33.33%;
+            max-width: 33.33%;
+            a.nav-link{
+                margin: 0 !important;
+            }
         }
         img {
           max-height: 65px;
