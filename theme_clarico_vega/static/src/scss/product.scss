@@ -16,9 +16,18 @@
         h1[itemprop="name"]{
             font-size: 1.75rem;
             font-weight: normal !important;
+            @include media-breakpoint-up(lg){
+                width: 85%;
+            }
+            @include media-breakpoint-down(md){
+                font-size: 1.125rem;
+            }
         }
         .oe_price{
            font-weight:normal;
+           @include media-breakpoint-down(md){
+                font-size: 1.1875rem;
+           }
         }
         #add_to_cart,.o_we_buy_now{
             &:focus{
