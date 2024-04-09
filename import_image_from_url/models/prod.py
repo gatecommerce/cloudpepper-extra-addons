@@ -65,9 +65,9 @@ class product_template(models.Model):
             except:
                 pass
 
-    @api.model
-    def create(self, vals):
-        res = super(product_template, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super(product_template, self).create(vals_list)
         if res.url:
             img = self.process_url(vals.get('url'), res.id)
         return res

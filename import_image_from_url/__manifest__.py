@@ -2,7 +2,7 @@
 
 {
     'name': 'Import product images from URL/link in Odoo',
-    'version': '17.0.0.0',
+    'version': '17.0.0.1',
     'sequence': 4,
     "category": "Extra Tools",
     'summary': 'Apps helps to import product images import product variants images import images from url import product images from url import mass product images import products images from file',
