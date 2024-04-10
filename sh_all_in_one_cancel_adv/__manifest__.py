@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) Softhealer Technologies.
 {
-    "name": "All In One Cancel - Advance | Cancel Sale Orders | Cancel Purchase Ordrs | Cancel Invoices | Cancel Invenory | Cancel Point Of Sale Orders | Cancel Landed Costs | Canel HR Expenses",
+    "name": "All In One Cancel - Advance | All In One Cancel and Delete",
     "author": "Softhealer Technologies",
     "website": "https://www.softhealer.com",
     "support": "support@softhealer.com",
     "category": "Extra Tools",
     "license": "OPL-1",
-    "summary": "Sale Order Cancel, Cancel Quotation, Purchase Order Cancel, Request For Quotation Cancel, Cancel POS Order, Cancel MRP Order,Delete Invoice, Cancel Payment, Cancel Stock Picking,Cancel Stock Moves Odoo",
+    "summary": "Cancel Sale Order Cancel Quotation Cancel Purchase Order Cancel Request For Quotation Cancel POS Order Cancel MRP Order Cancel Invoice Cancel Payment Cancel Stock Picking Cancel Stock Moves Odoo Cancel Inventory Cancel Landed Cost Cancel HR Expense Cancel HR Expance Cancel Multiple Records Cancel Individual Records Cancel Scrap Orders Cancel Manufacturing Orders Cancel SO Cancel Quote Cancel PO Cancel RFQ Cancel Point Of Sale Orders Cancel Bill Cancel Account Cancel Acc Delete Sale Order Delete Quotation Delete Purchase Order Delete Request For Quotation Delete POS Order Delete MRP Order Delete Invoice Delete Payment Delete Stock Picking Delete Stock Moves Odoo Delete Inventory Delete Landed Cost Delete HR Expense Delete HR Expance Delete Multiple Records Delete Individual Records Delete Scrap Orders Delete Manufacturing Orders Delete SO Delete Quote Delete PO Delete RFQ Delete Point Of Sale Orders Delete Bill Delete Account Delete Acc ",
     "description": """This module helps to cancel sale orders, purchase orders, invoices, payments, inventory (inventory transfer,stock move & scrap Orders), manufacturing orders, landed costs, HR Expenses, point of sale orders. You can also cancel multiple records from the tree view.""",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "depends": [
               "account", "purchase", "sale_management", "stock", "hr_expense", "stock_landed_costs", "mrp", "point_of_sale",
     ],

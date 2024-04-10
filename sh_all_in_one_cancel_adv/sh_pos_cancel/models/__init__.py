@@ -3,4 +3,4 @@
 
 from . import pos_order
 from . import pos_config_settings
-from . import stock_picking
+
