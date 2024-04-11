@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_create_invoice_wizard_form_view" model="ir.ui.view">
+        <field name="name">sh.create.invoice.wizard.form.view</field>
+        <field name="model">sh.create.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Invoice">
+                <div invisible="not context.get('invoice_already_created')" class="alert alert-danger" role="alert">
+                    Alert ! Invoice is already Created for this Delivery Order !
+                </div>
+                <group>
+                    <group>
+                        <field name="journal_ids" invisible="1" />
+                        <field name="sh_journal_id" domain="[('id','in',journal_ids)]" />
+                        <field name="sh_invoice_date" />
+                        <field name="sh_separate_invoice" />
+                    </group>
+                </group>
+                <footer>
+                    <button string="Create Invoice" name="action_create_invoices" type="object" class="btn-primary" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="sh_action_create_invoice_wizard" model="ir.actions.act_window">
+        <field name="name">Create Invoice</field>
+        <field name="res_model">sh.create.invoice.wizard</field>
+        <field name="groups_id" eval="[(4, ref('sh_invoice_picking.sh_display_create_invoice_button'))]" />
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="sh_create_invoice_wizard_form_view" />
+        <field name="target">new</field>
+    </record>
+    <record id="action_multiple_create_invoice" model="ir.actions.act_window">
+        <field name="name">Create Invoices</field>
+        <field name="res_model">sh.create.invoice.wizard</field>
+        <field name="groups_id" eval="[(4, ref('sh_invoice_picking.sh_display_create_invoice_button'))]" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking" />
+        <field name="binding_view_types">form,list</field>
+    </record>
+</odoo>

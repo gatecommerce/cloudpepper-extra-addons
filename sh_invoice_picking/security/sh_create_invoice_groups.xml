@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sh_display_create_invoice_button" model="res.groups">
+        <field name="name">Display Create Invoice</field>
+        <field name="users" eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]" />
+    </record>
+
+</odoo>
