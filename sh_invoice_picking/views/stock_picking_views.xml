@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <button name="action_cancel" position="after">
                 <!-- <button name="action_create_invoice" class="oe_highlight" string="Create Invoice" context="{'default_sh_separate_invoice':True}" attrs="{'invisible':[('state','in',['draft','waiting','confirmed','assigned','cancel'])]}" type="object" groups="sh_invoice_picking.sh_display_create_invoice_button" /> -->
-                <button name="action_create_invoice" class="oe_highlight" string="Create Invoice" context="{'default_sh_separate_invoice':True}" invisible="state in ('draft','waiting','confirmed','assigned','cancel')" type="object" groups="sh_invoice_picking.sh_display_create_invoice_button" />
+                <button name="action_create_invoice" class="oe_highlight" string="Create Invoice" invisible="state in ('draft','waiting','confirmed','assigned','cancel')" type="object" groups="sh_invoice_picking.sh_display_create_invoice_button" />
             </button>
             <xpath expr="//sheet//div[@name='button_box']" position="inside">
                 <button class="oe_stat_button" icon="fa-pencil-square-o" name="action_invoices" type="object" groups="sh_invoice_picking.sh_display_create_invoice_button">

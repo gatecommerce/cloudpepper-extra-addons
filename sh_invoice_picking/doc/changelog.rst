@@ -17,3 +17,9 @@ Initial Release.
 -----------------------
 
 - [FIX] issue of journal entry with Anglo-Saxon Accounting
+
+17.0.5 (12th April 2024)
+-----------------------
+- [Removed] Separate Invoices boolean field from Create Invoice wizard
+- [Added] Code to skip cancelled picking and forcefully validate picking
+- [Updated] Set picking_ids m2m field to readonly in account.move

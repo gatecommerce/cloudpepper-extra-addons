@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
-                <field name="sh_picking_ids" widget="many2many_tags" groups="sh_invoice_picking.sh_display_create_invoice_button" />
+                <field name="sh_picking_ids" widget="many2many_tags" groups="sh_invoice_picking.sh_display_create_invoice_button" readonly="1"/>
             </field>
         </field>
     </record>

@@ -13,7 +13,7 @@
                         <field name="journal_ids" invisible="1" />
                         <field name="sh_journal_id" domain="[('id','in',journal_ids)]" />
                         <field name="sh_invoice_date" />
-                        <field name="sh_separate_invoice" />
+                        <!-- <field name="sh_separate_invoice" /> -->
                     </group>
                 </group>
                 <footer>
@@ -23,6 +23,7 @@
             </form>
         </field>
     </record>
+
     <record id="sh_action_create_invoice_wizard" model="ir.actions.act_window">
         <field name="name">Create Invoice</field>
         <field name="res_model">sh.create.invoice.wizard</field>
@@ -31,6 +32,8 @@
         <field name="view_id" ref="sh_create_invoice_wizard_form_view" />
         <field name="target">new</field>
     </record>
+
+    <!-- Multi Action - Create Invoices -->
     <record id="action_multiple_create_invoice" model="ir.actions.act_window">
         <field name="name">Create Invoices</field>
         <field name="res_model">sh.create.invoice.wizard</field>
