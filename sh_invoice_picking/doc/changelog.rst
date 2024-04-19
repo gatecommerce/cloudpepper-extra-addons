@@ -23,3 +23,8 @@ Initial Release.
 - [Removed] Separate Invoices boolean field from Create Invoice wizard
 - [Added] Code to skip cancelled picking and forcefully validate picking
 - [Updated] Set picking_ids m2m field to readonly in account.move
+
+17.0.6 (18th April 2024)
+------------------------
+- [Updated] Code updated to Create Invoice/Bill only for selected picking 
+            and remove extra invoice lines from Invoice/Bill which are not in picking

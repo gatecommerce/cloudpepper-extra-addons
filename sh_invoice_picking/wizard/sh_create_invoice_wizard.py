@@ -73,11 +73,20 @@ class ShCreateInvoiceWizard(models.TransientModel):
                     moves = picking.sale_id._create_invoices(True, True)
                 else:
                     return
-                for move in moves:
-                    move.write({
-                        'sh_picking_ids': [(4, picking.id)],
-                        'journal_id': self.sh_journal_id.id,
-                    })
+                if moves:
+                    for move in moves:
+                        move.write({
+                            'sh_picking_ids': [(4, picking.id)],
+                            'journal_id': self.sh_journal_id.id,
+                        })
+                        
+                        if move.invoice_line_ids and move.sh_picking_ids:
+                            for picking_id in move.sh_picking_ids:
+                                picking_product_ids = []
+                                picking_product_ids = move.sh_picking_ids.move_ids_without_package.mapped('product_id')
+                                remove_lines = move.invoice_line_ids.filtered(lambda m:m.product_id.id not in picking_product_ids.ids)
+                                if remove_lines:
+                                    remove_lines.unlink()
 
     def auto_validate_picking(self, picking):
         if picking.state != 'done':

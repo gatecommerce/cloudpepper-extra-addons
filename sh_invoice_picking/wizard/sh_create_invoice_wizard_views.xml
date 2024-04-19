@@ -5,7 +5,7 @@
         <field name="model">sh.create.invoice.wizard</field>
         <field name="arch" type="xml">
             <form string="Create Invoice">
-                <div invisible="not context.get('invoice_already_created')" class="alert alert-danger" role="alert">
+                <div invisible="context.get('invoice_already_created')" class="alert alert-danger" role="alert">
                     Alert ! Invoice is already Created for this Delivery Order !
                 </div>
                 <group>
