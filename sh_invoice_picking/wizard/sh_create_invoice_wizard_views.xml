@@ -5,15 +5,15 @@
         <field name="model">sh.create.invoice.wizard</field>
         <field name="arch" type="xml">
             <form string="Create Invoice">
-                <div invisible="context.get('invoice_already_created')" class="alert alert-danger" role="alert">
+                <!-- <div invisible="context.get('invoice_already_created')" class="alert alert-danger" role="alert">
                     Alert ! Invoice is already Created for this Delivery Order !
-                </div>
+                </div> -->
                 <group>
                     <group>
                         <field name="journal_ids" invisible="1" />
                         <field name="sh_journal_id" domain="[('id','in',journal_ids)]" />
                         <field name="sh_invoice_date" />
-                        <!-- <field name="sh_separate_invoice" /> -->
+                        <field name="sh_separate_invoice" />
                     </group>
                 </group>
                 <footer>

@@ -28,3 +28,8 @@ Initial Release.
 ------------------------
 - [Updated] Code updated to Create Invoice/Bill only for selected picking 
             and remove extra invoice lines from Invoice/Bill which are not in picking
+
+17.0.7 (22nd April 2024)
+------------------------
+- [Added] Separate Invoices boolean field in Create Invoice wizard
+- [Updated] Code updated to create Invoices/Bills either separate or together
