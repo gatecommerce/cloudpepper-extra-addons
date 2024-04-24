@@ -33,3 +33,7 @@ Initial Release.
 ------------------------
 - [Added] Separate Invoices boolean field in Create Invoice wizard
 - [Updated] Code updated to create Invoices/Bills either separate or together
+
+17.0.8 (23rd April 2024)
+------------------------
+- [Fixed] Issue of not updating Billed qty when create single invoice/bill from multiple pickings

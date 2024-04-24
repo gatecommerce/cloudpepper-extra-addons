@@ -115,19 +115,25 @@ class ShCreateInvoiceWizard(models.TransientModel):
                                 for move_line in picking.move_ids_without_package:
                                     if move_line.product_id.id in existing_bill.invoice_line_ids.mapped('product_id').ids:
                                         inv_line = bill.invoice_line_ids.filtered(lambda x:x.product_id.id == move_line.product_id.id)
-                                        inv_line.write({'quantity':inv_line.quantity + move_line.quantity})
+                                        purchase_line_id = picking.purchase_id.order_line.filtered(lambda x:x.product_id.id == move_line.product_id.id)
+                                        if purchase_line_id and len(purchase_line_id) > 1:
+                                            purchase_line_id = purchase_line_id[0]
+                                        inv_line.write({'quantity':inv_line.quantity + move_line.quantity,'purchase_line_id' : purchase_line_id.id,})
+                                        
                                     else:
                                         purchase_line = picking.purchase_id.order_line.filtered(lambda x:x.product_id.id == move_line.product_id.id)
                                         if purchase_line and len(purchase_line) > 1:
                                             purchase_line = purchase_line[0]
-                                        self.env['account.move.line'].sudo().create({
+                                        inv_line_id = self.env['account.move.line'].sudo().create({
                                             'product_id' : move_line.product_id.id,
                                             'name': picking.purchase_id.name + " : " + purchase_line.name,
                                             'quantity' : move_line.quantity,
                                             'price_unit' : purchase_line.price_unit,
                                             'tax_ids' : purchase_line.taxes_id.ids,
                                             'move_id' : existing_bill.id,
+                                            'purchase_line_id' : purchase_line.id,
                                         })
+                                        
                                 existing_bill.write({
                                     'sh_picking_ids': [(4, picking.id)],
                                     'journal_id': self.sh_journal_id.id,
@@ -164,7 +170,7 @@ class ShCreateInvoiceWizard(models.TransientModel):
                                         sale_line = picking.sale_id.order_line.filtered(lambda x:x.product_id.id == move_line.product_id.id)
                                         if sale_line and len(sale_line) > 1:
                                             sale_line = sale_line[0]
-                                        self.env['account.move.line'].sudo().create({
+                                        inv_line = self.env['account.move.line'].sudo().create({
                                             'product_id' : move_line.product_id.id,
                                             'name': picking.sale_id.name + " : " + sale_line.name,
                                             'quantity' : move_line.quantity,
@@ -172,6 +178,7 @@ class ShCreateInvoiceWizard(models.TransientModel):
                                             'tax_ids' : sale_line.tax_id.ids,
                                             'move_id' : existing_invoice.id,
                                         })
+                                        sale_line.write({'invoice_lines': [(4, inv_line.id)]})
                                 existing_invoice.write({
                                     'sh_picking_ids': [(4, picking.id)],
                                     'journal_id': self.sh_journal_id.id,
@@ -220,14 +227,11 @@ class ShCreateInvoiceWizard(models.TransientModel):
                     'quantity' : move_line.quantity,
                     'price_unit' : purchase_line.price_unit,
                     'tax_ids' : purchase_line.taxes_id.ids,
+                    'purchase_line_id' : purchase_line.id,
                 }))
             bill_id.write({'invoice_line_ids': invoice_lines})
             picking.purchase_id.write({'invoice_ids' : [(4, bill_id.id)]})
-            
-            for line in bill_id.invoice_line_ids:
-                purchase_line_id = picking.purchase_id.order_line.filtered(lambda x:x.product_id.id == move_line.product_id.id)
-                if purchase_line_id:
-                    purchase_line_id.write({'invoice_lines' : [(4, line.id)]})
+
         return bill_id or False
         
     def create_customer_invoice(self,picking):
