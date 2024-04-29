@@ -37,3 +37,7 @@ Initial Release.
 17.0.8 (23rd April 2024)
 ------------------------
 - [Fixed] Issue of not updating Billed qty when create single invoice/bill from multiple pickings
+
+17.0.9 (29th April 2024)
+------------------------
+- [Fixed] Allow to create Bill or Invoice for any type of picking
