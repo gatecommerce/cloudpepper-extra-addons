@@ -20,6 +20,16 @@ class WhatsAppCampaign(models.Model):
             self.use_batching = False
             self.batch_size = 0
 
+    def write(self, vals):
+        # Aggiorna i valori di use_batching e batch_size in base alla configurazione selezionata
+        if 'batching_config_id' in vals:
+            batching_config = self.env['whatsapp.batching.config'].browse(vals['batching_config_id'])
+            vals.update({
+                'use_batching': batching_config.use_batching,
+                'batch_size': batching_config.batch_size,
+            })
+        return super(WhatsAppCampaign, self).write(vals)
+
     def _send_campaign_messages_in_batches(self):
         self.ensure_one()
         if not self.batching_config_id or not self.batching_config_id.use_batching:
