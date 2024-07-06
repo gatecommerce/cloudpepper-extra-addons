@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_whatsapp_campaign_form_inherit_batching" model="ir.ui.view">
+        <field name="name">whatsapp.messaging.lists.form.inherit.batching</field>
+        <field name="model">whatsapp.messaging.lists</field>
+        <field name="inherit_id" ref="tus_whatsapp_marketing_enterprise.whatsapp_messaging_lists_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group" position="after">
+                <group string="Configurazione Batching">
+                    <field name="batching_config_id"/>
+                    <field name="use_batching" readonly="1"/>
+                    <field name="batch_size" readonly="1" invisible="not use_batching"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_whatsapp_batching_config_tree" model="ir.ui.view">
+        <field name="name">whatsapp.batching.config.tree</field>
+        <field name="model">whatsapp.batching.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="use_batching"/>
+                <field name="batch_size"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_whatsapp_batching_config_form" model="ir.ui.view">
+        <field name="name">whatsapp.batching.config.form</field>
+        <field name="model">whatsapp.batching.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="use_batching"/>
+                        <field name="batch_size" invisible="not use_batching"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_whatsapp_batching_config" model="ir.actions.act_window">
+        <field name="name">Configurazioni Batching WhatsApp</field>
+        <field name="res_model">whatsapp.batching.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_whatsapp_batching_config"
+              name="Configurazioni Batching"
+              action="action_whatsapp_batching_config"
+              parent="tus_whatsapp_marketing_enterprise.whatsapp_marketing_menu"
+              sequence="20"/>
+</odoo>
